@@ -52,9 +52,17 @@
   
         createApp({
             data() {
-    return {
-      
-    }
+                return {
+            cart: [],
+            showProductPage: true,
+            data: lesson,
+            // arrange  : "ascending",
+            ascending: String('true'),
+            sortBy: 'subject',
+            search: '',
+            name: '',
+            number: '',
+          };
   }
 })
     </script>
