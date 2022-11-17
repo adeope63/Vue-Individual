@@ -179,7 +179,22 @@
             name: '',
             number: '',
           };
-  }
+  },
+  methods: {
+          addToCart(event, id) {
+            let idx;
+            let [item, index] = this.data.filter((k, index) => {
+              if (k.id == id) {
+                idx = index;
+                return k;
+              }
+            });
+
+            this.data[idx].space -= 1;
+
+            this.cart.push(item);
+          },
+  },
 })
     </script>
 </body>
