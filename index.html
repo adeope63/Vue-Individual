@@ -194,6 +194,38 @@
 
             this.cart.push(item);
           },
+          sortByPrice: function (priceArray) {
+            function compare(a, b) {
+              if (a.price > b.price) return 1;
+              if (a.price < b.price) return -1;
+              return 0;
+            }
+            return priceArray.sort(compare);
+          },
+          sortBySubject: function (subjectArray) {
+            function compare(a, b) {
+              if (a.subject > b.subject) return 1;
+              if (a.subject < b.subject) return -1;
+              return 0;
+            }
+            return subjectArray.sort(compare);
+          },
+          sortByLocation: function (locationArray) {
+            function compare(a, b) {
+              if (a.location > b.location) return 1;
+              if (a.location < b.location) return -1;
+              return 0;
+            }
+            return locationArray.sort(compare);
+          },
+          sortByAvailable: function (availabilityArray) {
+            function compare(a, b) {
+              if (a.space > b.space) return 1;
+              if (a.space < b.space) return -1;
+              return 0;
+            }
+            return availabilityArray.sort(compare);
+          },
   },
 })
     </script>
