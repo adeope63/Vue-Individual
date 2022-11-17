@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>After Lesson Classes</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn git</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -12,8 +12,9 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="style.css" />
     <script src="lessonData.js"></script>
-</head>
-<body>
+  </head>
+
+  <body>
     <div id="app">
       <div class="main-container">
         <div class="cartDiv">
@@ -160,15 +161,15 @@
         </div>
       </div>
     </div>
-    
+
     <script type="module">
-        //Importing  the Json file
-        //  lesson from "./lessonData.js"
-        const { createApp } = Vue;
-  
-        createApp({
-            data() {
-                return {
+      //Importing  the Json file
+      //  lesson from "./lessonData.js"
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
             cart: [],
             showProductPage: true,
             data: lesson,
@@ -178,9 +179,10 @@
             search: '',
             name: '',
             number: '',
+            // numberValid: this.number.value,
           };
-  },
-  methods: {
+        },
+        methods: {
           addToCart(event, id) {
             let idx;
             let [item, index] = this.data.filter((k, index) => {
@@ -226,6 +228,7 @@
             }
             return availabilityArray.sort(compare);
           },
+
           submitForm() {
             alert('Order Submitted!');
           },
@@ -245,10 +248,18 @@
 
             this.data[idx].space += 1;
 
+            // let lesson = this.cart
+            // for(i=o;i<lesson.length;i++){
+            //   if(i == id){
+
+            //   }
+            // }
+
             this.cart.pop(item.id);
+            // item.id.space++
           },
-  },
-  computed: {
+        },
+        computed: {
           letterValid(name) {
             let letters = /^[A-Za-z]+$/;
             if (letters.test(this.name)) {
@@ -264,9 +275,43 @@
             } else {
               return false;
             }
-          }
+          },
+          cartItemCount() {
+            return this.cart.length || '';
+          },
+          sortedJson: function () {
+            let tempLessons = this.data;
+
+            tempLessons = tempLessons.filter((lesson) => {
+              return (
+                lesson.subject
+                  .toLowerCase()
+                  .includes(this.search.toLowerCase()) ||
+                lesson.location
+                  .toLowerCase()
+                  .includes(this.search.toLowerCase())
+              );
+            });
+            if (this.sortBy == 'price') {
+              tempLessons = this.sortByPrice(tempLessons);
+            } else if (this.sortBy == 'subject') {
+              tempLessons = this.sortBySubject(tempLessons);
+            } else if (this.sortBy == 'location') {
+              tempLessons = this.sortByLocation(tempLessons);
+            } else if (this.sortBy == 'space') {
+              tempLessons = this.sortByAvailability(tempLessons);
+            }
+
+            if (this.ascending == 'true') {
+              return tempLessons;
+            } else if (this.ascending == 'false') {
+              return tempLessons.reverse();
+            }
+            return tempLessons;
+          },
         },
-})
+        component: {},
+      }).mount('#app');
     </script>
-</body>
+  </body>
 </html>
