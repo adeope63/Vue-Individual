@@ -11,6 +11,33 @@
 <body>
     <div id="app">
 
+        <main class="container">
+            <!--Looping across the Avaliable Lesson-->
+
+            <section
+              class="paragraph"
+              v-for="item in sortedJson"
+              :key="item.id"
+            >
+              <p class="subject">Subject: {{ item.subject }}</p>
+              <p class="location">Location: {{ item.location }}</p>
+              <p class="price">Price: €{{ item.price }}</p>
+              <p class="space">Spaces: {{ item.space }}</p>
+              <img class="image" :src="item.imgURL" alt="" />
+              <button
+                class="add"
+                v-on:click="addToCart($event, item.id)"
+                v-if="item.space > 0"
+              >
+                Add to Cart
+              </button>
+              <!--Disable button when no space left-->
+              <button class="add" disabled="disabled" v-else>
+                Add to Cart
+              </button>
+            </section>
+          </main>
+          
     </div>
     
     <script type="module">
