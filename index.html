@@ -15,8 +15,83 @@
 </head>
 <body>
     <div id="app">
+      <div class="main-container">
+        <div class="cartDiv">
+          <button class="cartBtn" v-if="cart<1" disabled>
+            Checkout {{cartItemCount}}
+          </button>
+          <button class="cartBtn" v-else v-on:click="showCheckout">
+            Checkout {{cartItemCount}}
+          </button>
+        </div>
 
-        <main class="container">
+        <div class="lesson" v-if="showProductPage">
+          <header class="header">
+            <div class="sort">
+              <span>Sort by: </span>
+              <div>
+                <label for="subject">Subject</label>
+                <input
+                  type="radio"
+                  id="subject"
+                  value="subject"
+                  v-model="sortBy"
+                  checked
+                />
+              </div>
+              <div>
+                <label for="location">Location</label>
+                <input
+                  type="radio"
+                  id="location"
+                  value="location"
+                  v-model="sortBy"
+                />
+              </div>
+              <div>
+                <label for="price">Price</label>
+                <input type="radio" id="price" value="price" v-model="sortBy" />
+              </div>
+              <div>
+                <label for="availability">Availability</label>
+                <input
+                  type="radio"
+                  id="availability"
+                  value="availability"
+                  v-model="sortBy"
+                />
+              </div>
+            </div>
+
+            <div class="arrangement">
+              <span>Order: </span>
+              <label for="ascending">Ascending order</label>
+              <input
+                type="radio"
+                id="ascending"
+                value="true"
+                v-model="ascending"
+                checked
+              />
+              <label for="descending">Descending order </label>
+              <input
+                type="radio"
+                id="descending"
+                value="false"
+                v-model="ascending"
+              />
+            </div>
+            <input
+              class="search"
+              type="text"
+              v-model="search"
+              placeholder="Search title or Location.."
+            />
+
+            <h1>Lessons</h1>
+          </heander>
+
+          <main class="container">
             <!--Looping across the Avaliable Lesson-->
 
             <section
@@ -42,7 +117,48 @@
               </button>
             </section>
           </main>
+        </div>
 
+        <div v-else>
+          <h1>Cart</h1>
+          <button class="cartBtn" v-if="cart==0" v-on:click="showCheckout">
+            Go back to homepage
+          </button>
+          <main class="container">
+            <section class="paragraph" v-for="item in cart" :key="item.id">
+              <p class="subject">Subject: {{ item.subject }}</p>
+              <p class="location">Location: {{ item.location }}</p>
+              <p class="price">Price: €{{ item.price }}</p>
+              <!-- <p class="space">Spaces: {{ item.space }}</p> -->
+              <img class="image" :src="item.imgURL" alt="" />
+              <button class="add" @click="removeFromCart($event,item.id)">
+                Remove
+              </button>
+            </section>
+          </main>
+
+          <div class="details">
+            <div class="name">
+              <label for="name">Name: </label>
+              <input id="name" placeholder="Name" type="text" v-model="name" />
+            </div>
+            <div class="number">
+              <label for="number">Number: </label>
+              <input
+                id="number"
+                placeholder="Phone Number"
+                v-model="number"
+                type="number"
+              />
+            </div>
+
+            <button v-if="letterValid && numberValid" v-on:click="submitForm">
+              Place Order
+            </button>
+            <button v-else disabled="disabled">Place order</button>
+          </div>
+        </div>
+      </div>
     </div>
     
     <script type="module">
