@@ -226,6 +226,27 @@
             }
             return availabilityArray.sort(compare);
           },
+          submitForm() {
+            alert('Order Submitted!');
+          },
+
+          showCheckout() {
+            this.showProductPage = this.showProductPage ? false : true;
+          },
+
+          removeFromCart(event, id) {
+            let idx;
+            let [item, index] = this.data.filter((k, index) => {
+              if (k.id == id) {
+                idx = index;
+                return k;
+              }
+            });
+
+            this.data[idx].space += 1;
+
+            this.cart.pop(item.id);
+          },
   },
 })
     </script>
