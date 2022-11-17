@@ -1,0 +1,156 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#app{
+
+    width: 90vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+label{
+    padding-right: 5px;
+    cursor: pointer;
+}
+input {
+    padding: 4px 12px;
+    color: rgba(0,0,0,.70);
+    border: 1px solid rgba(0,0,0,.12);
+    transition: .15s all ease-in-out;
+    background: white;
+   
+}
+input:focus {
+    outline: none;
+    transform: scale(1.05);
+   
+  }
+  
+  input::-webkit-input-placeholder {
+      font-size: 12px;
+      color: rgba(0,0,0,.50);
+      font-weight: 100;
+  }
+.container{
+    display: grid;
+    max-width: 90vw;
+    grid-template-columns: 310px 310px 310px ;
+    grid-gap: 1rem;
+    margin: 30px;
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cartDiv{
+    display: flex;
+    justify-content: center;
+}
+.cartBtn{
+    margin: 20px;
+    padding: 20px;
+    border-radius: 50px;
+}
+.sort{
+    width: 500px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    background-color: rgb(47, 98, 181);
+    color: white;
+    border-radius: 50px;
+}
+.arrangement{
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    background-color: rgb(47, 98, 181);
+    color: white;
+    border-radius: 50px;
+}
+.search{
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    border-radius: 50px;
+}
+
+
+.paragraph{
+    padding: 50px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+    position: relative;
+    max-height: 200px;
+}
+p{
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.5rem;
+}
+button{
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5%;
+    border: none;
+    background-color: rgb(47, 98, 181);
+    color: white;
+    cursor: pointer;
+    align-self: center;
+    width: 200px;
+}
+button:disabled{
+    background-color: rgb(184, 184, 255);
+
+}
+.image{
+    width: 100px;
+    position: absolute;
+    top: 25px;
+    left: 200px;
+    padding: 10px;
+    margin-left: 10px;
+}
+h1{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+}
+.name{
+    padding: 20px;
+}
+.name > input{
+    margin-left: 50px;
+}
+.number{
+    padding: 10px;
+}
+.number> input{
+    margin-left: 40px;
+}
+
+@media screen and (max-width: 800px) {
+    .container{
+    grid-template-columns: auto auto;
+    }
+}
