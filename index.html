@@ -86,11 +86,11 @@
               class="search"
               type="text"
               v-model="search"
-              placeholder="Search title or Location.."
+              placeholder="Search title.."
             />
 
             <h1>Lessons</h1>
-          </heander>
+          </header>
 
           <main class="container">
             <!--Looping across the Avaliable Lesson-->
@@ -140,11 +140,14 @@
 
           <div class="details">
             <div class="name">
-              <label for="name">Name: </label>
-              <input id="name" placeholder="Name" type="text" v-model="name" />
+              <label for="fname">First Name: </label>
+              <input id="fname" placeholder="Name" type="text" v-model="fname" />
+            </br>
+               <label for="lname">Last Name: </label>
+              <input id="lname" placeholder="Name" type="text" v-model="lname" />
             </div>
             <div class="number">
-              <label for="number">Number: </label>
+              <label for="number">Phone Number: </label>
               <input
                 id="number"
                 placeholder="Phone Number"
@@ -153,7 +156,7 @@
               />
             </div>
 
-            <button v-if="letterValid && numberValid" v-on:click="submitForm">
+            <button v-if="letterfValid && letterfValid && numberValid" v-on:click="submitForm">
               Place Order
             </button>
             <button v-else disabled="disabled">Place order</button>
@@ -260,7 +263,15 @@
           },
         },
         computed: {
-          letterValid(name) {
+          letterfValid(fname) {
+            let letters = /^[A-Za-z]+$/;
+            if (letters.test(this.fname)) {
+              return true;
+            } else {
+              return false;
+            }
+          },
+          letterlValid(lname) {
             let letters = /^[A-Za-z]+$/;
             if (letters.test(this.name)) {
               return true;
